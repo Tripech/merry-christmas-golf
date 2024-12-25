@@ -163,4 +163,53 @@ body {
   .card .title h3 {
     font-size: 20px;
   }
+  .container {
+    width: 90vw;
+    height: auto;
+    perspective: 1000px;
+  }
+  
+  .card {
+    width: 90%; /* ปรับขนาดการ์ดให้เหมาะกับหน้าจอ */
+    max-width: 350px; /* จำกัดความกว้างสูงสุด */
+    height: auto;
+  }
+  
+  .card .title {
+    top: 30px; /* ลดระยะห่างด้านบน */
+  }
+  
+  .card .title h1 {
+    font-size: 40px; /* ลดขนาดข้อความ */
+  }
+  
+  .card .title h2 {
+    font-size: 18px;
+  }
+  
+  .card .title h3 {
+    font-size: 16px;
+  }
+  
+  .title .greeting {
+    font-size: 16px; /* ลดขนาดข้อความ */
+    padding: 8px 15px; /* ลด padding */
+  }
+  
+  .card .images .santa {
+    width: 250px; /* ปรับขนาดรูป */
+  }
+  
+  .card .images .tree {
+    width: 250px; /* ปรับขนาดรูป */
+  }
+  @media screen and (max-width: 768px) {
+    body {
+      height: auto; /* ให้ปรับตามเนื้อหา */
+    }
+  
+    .container {
+      perspective: 800px; /* ลด perspective */
+    }
+  }
 }

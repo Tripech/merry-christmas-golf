@@ -40,15 +40,21 @@
             title = document.querySelector(".title"),
             santa = document.querySelector(".santa"),
             tree = document.querySelector(".tree");
-                card.addEventListener("mousemove", () => {
-                    greeting.style.display = "block";
-                });
+        card.addEventListener("mousemove", () => {
+            greeting.style.display = "block";
+        });
+        card.addEventListener("touchstart", () => {
+            greeting.style.display = "block";
+        });
 
-                // ซ่อนข้อความเมื่อ Mouse ออกจากการ์ด
-                card.addEventListener("mouseout", () => {
-                    greeting.style.display = "none";
-                });
-                // Card Rotate On Mouse Move
+        // ซ่อนข้อความเมื่อ Mouse หรือ Touch ออกจากการ์ด
+        card.addEventListener("mouseout", () => {
+            greeting.style.display = "none";
+        });
+        card.addEventListener("touchend", () => {
+            greeting.style.display = "none";
+        });
+        // Card Rotate On Mouse Move
         container.addEventListener("mousemove", (rotate) => {
             let x = (innerWidth / 2 - rotate.pageX) / 15,
                 y = (innerHeight / 2 - rotate.pageY) / 15;
@@ -70,7 +76,33 @@
             title.style.transform = "translate3d(0, 0, 0)";
             santa.style.transform = "translate3d(0, 0, 0)";
             tree.style.transform = "translate3d(0, 0, 0)";
-        }); 
+        });
+        function handleMove(event) {
+            let x, y;
+
+            if (event.type === "mousemove") {
+                x = event.pageX;
+                y = event.pageY;
+            } else if (event.type === "touchmove") {
+                const touch = event.touches[0];
+                x = touch.pageX;
+                y = touch.pageY;
+            }
+
+            const rotateX = (innerHeight / 2 - y) / 15;
+            const rotateY = (innerWidth / 2 - x) / 15;
+
+            card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+        }
+
+        container.addEventListener("mousemove", handleMove);
+        container.addEventListener("touchmove", handleMove);
+        container.addEventListener("mouseout", () => {
+            card.style.transform = "rotateY(0deg) rotateX(0deg)";
+        });
+        container.addEventListener("touchend", () => {
+            card.style.transform = "rotateY(0deg) rotateX(0deg)";
+        });
     </script>
 </body>
 
